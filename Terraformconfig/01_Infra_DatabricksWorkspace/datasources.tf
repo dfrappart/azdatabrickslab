@@ -80,6 +80,15 @@ data "azurerm_key_vault_secret" "KVSecret" {
   key_vault_id                = data.terraform_remote_state.Subsetupstate.outputs.KeyVault_Id
 }
 
+data "azurerm_key_vault_secret" "KVSecretAppId" {
+  name                        = "dtbsappid"
+  key_vault_id                = data.terraform_remote_state.Subsetupstate.outputs.KeyVault_Id
+}
+
+data "azurerm_key_vault_secret" "KVSecretAppSecret" {
+  name                        = "dtbssecret"
+  key_vault_id                = data.terraform_remote_state.Subsetupstate.outputs.KeyVault_Id
+}
 /*
 #############################################################################
 #data source for databricks workspace

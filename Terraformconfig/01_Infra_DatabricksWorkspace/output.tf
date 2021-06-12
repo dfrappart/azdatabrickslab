@@ -86,17 +86,24 @@ output "DTBSWName" {
   value                 = module.DTBWS.DTBSWName
 }
 
-/*
+
 ######################################################
 #Databricks ouputs
 
-output "databricksAdminGroup" {
-  value                 = data.databricks_group.admins
-  sensitive = true
+output "DatalakeFull" {
+  value                 = module.STAdatalake[*].STAFull
+  sensitive             = true
 }
 
-output "databricksUser" {
-  value                 = databricks_user.sheldon
+
+output "DatalakeFSFullInfo" {
+  value                 = module.datalakefilesystem[*].FullOutput
+  sensitive             = true
+}
+
+
+
+output "databricksSP" {
+  value = data.azuread_service_principal.databricksSP
   sensitive = true
 }
-*/

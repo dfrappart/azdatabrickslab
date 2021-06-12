@@ -7,11 +7,22 @@ terraform {
   #backend "azurerm" {}
   required_providers {
     azurerm = {}
+    azuread = {}
     ##databricks = {
     #  source = "databrickslabs/databricks"
     #}
 
   }
+}
+
+provider "azuread" {
+  
+  client_id                                = var.AzureADClientID
+  client_secret                            = var.AzureADClientSecret
+  tenant_id                                = var.AzureTenantID
+
+  #features {}
+  
 }
 
 provider "azurerm" {
@@ -80,70 +91,53 @@ module "DTBWS" {
 
 }
 
-/*
-resource "azurerm_monitor_diagnostic_setting" "DatabricksDiag" {
-  name                                  = "diag-${module.DTBWS.DTBSWFull.name}"
-  target_resource_id                    = module.DTBWS.DTBSWId
-  storage_account_id                    = data.azurerm_storage_account.STALog.id
-  log_analytics_workspace_id            = data.azurerm_log_analytics_workspace.LAWLog.id
+# Creating some storage
+
+module "STAdatalake" {
+  
+  count                                 = var.STACount
+  #Module Location
+  source                                = "github.com/dfrappart/Terra-AZModuletest//Modules_building_blocks//101_StorageAccountGP"
+  #Module variable    
+  STASuffix                             = "dtbslab${count.index+1}"
+  RGName                                = module.ResourceGroup.RGFull.name
+  StorageAccountLocation                = module.ResourceGroup.RGFull.location
+  IsHNSEnabled                          = true
 
 
-  dynamic "log" {
-    for_each = var.logcategories
-    iterator = each
-    content {
-      category                          = each.value.LogCatName
-      enabled                           = each.value.IsLogCatEnabled
-      retention_policy {
-        enabled                         = each.value.IsRetentionEnabled
-        days                            = each.value.RetentionDay
-      }
-    }
-  }
 
 }
-*/
-######################################################################
-# databricks resources
-
-/*
 
 
+module "datalakefilesystem" {
+  
+  count                                 = var.STACount
+  #Module Location
+  source                                = "github.com/dfrappart/Terra-AZModuletest//Modules_building_blocks///104_Datalakev2FS"
+  #Module variable    
+  DatalakeFSName                        = "dtbslab${count.index+1}"
+  STAId                                 = module.STAdatalake[count.index].STAFull.id
 
-
-resource "databricks_user" "sheldon" {
-  user_name    = "sheldon@teknews.cloud"
-}
-
-resource "databricks_user" "faye" {
-  user_name    = "faye@teknews.cloud"
-}
-
-resource "databricks_group_member" "omgsheldonisadmin" {
-  group_id = data.databricks_group.admins.id
-  member_id = databricks_user.sheldon.id
 }
 
 
 
 
-/*
+# Assigning the app registration used by databricks to storage
 
-resource "databricks_cluster" "cluster1" {
-  cluster_name = "value"
-  spark_version = "value"
-  driver_node_type_id = "value"
-  node_type_id = "value"
-  instance_pool_id = "value"
-  policy_id = "value"
-  autotermination_minutes = 20
+data "azuread_service_principal" "databricksSP" {
+  application_id = data.azurerm_key_vault_secret.KVSecretAppId.value
+}
 
-  autoscale {
-    min_workers = 1
-    max_workers = 3
-  }
+module "AssignDTBS_STADataContrib" {
+
+  #Module Location
+  source                                  = "github.com/dfrappart/Terra-AZModuletest//Modules_building_blocks//401_RBACAssignment_BuiltinRole/"
+
+  #Module variable
+  RBACScope                               = module.ResourceGroup.RGFull.id
+  BuiltinRoleName                         = "Storage Blob Data Contributor"
+  ObjectId                                = data.azuread_service_principal.databricksSP.object_id
 
 
 }
-
-*/

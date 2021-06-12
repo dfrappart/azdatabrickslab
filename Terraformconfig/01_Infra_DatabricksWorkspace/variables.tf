@@ -23,6 +23,18 @@ variable "AzureTenantID" {
   description                   = "The Azure AD tenant ID"
 }
 
+variable "AzureADClientID" {
+  type                          = string
+  description                   = "The application Id, taken from Azure AD app registration for Azure AD provider"
+}
+
+
+variable "AzureADClientSecret" {
+  type                          = string
+  description                   = "The Application secretfor Azure AD provider"
+
+}
+
 ######################################################
 # Common variables
 
@@ -115,4 +127,16 @@ variable "logcategories" {
         RetentionDay              = 365
     }
   }
+}
+
+variable "STACount" {
+  type                            = string
+  description                     = "The number of sta to create"
+  default                         = 2     
+}
+
+variable "datalakefscount" {
+  type                            = string
+  description                     = "The number of datalake file system to create"
+  default                         = 3     
 }
