@@ -98,6 +98,11 @@ stages:
          echo 'State is stored in:'${key}
          echo
          echo '######################################################'
+         echo 'check terraform'
+         terraform version
+         echo
+         echo 'check files'
+         ls
          echo 'Plan Terraform'
          echo
          terraform plan \
