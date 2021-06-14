@@ -8,7 +8,7 @@
 
 terraform {
   
-  #backend "azurerm" {}
+  backend "azurerm" {}
   required_providers {
     azurerm = {}
   }
