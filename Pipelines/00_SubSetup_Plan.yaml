@@ -13,7 +13,7 @@ trigger:
     - SBXCloudTeam
   paths:
     include:
-    - TerraformConfig/00_SubSetup/*
+    - Terraformconfig/00_SubSetup/*
     - Modules/*
 
 # Job Workers config
@@ -108,7 +108,7 @@ stages:
          -var AzureClientID=${AzureClientID} -input=false
      
     
-        workingDirectory: 'TerraformConfig/00_SubSetup'
+        workingDirectory: 'Terraformconfig/00_SubSetup'
         displayName: 'Terraform init & Plan'
         env:
           AzureClientID: $(TFId)
