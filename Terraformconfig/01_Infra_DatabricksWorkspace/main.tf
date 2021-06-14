@@ -4,7 +4,7 @@
 
 terraform {
   
-  #backend "azurerm" {}
+  backend "azurerm" {}
   required_providers {
     azurerm = {}
     azuread = {}
@@ -34,15 +34,8 @@ provider "azurerm" {
   features {}
   
 }
-/*
-provider "databricks" {
-  azure_workspace_resource_id = module.DTBWS.DTBSWFull.id
-  azure_client_id             = var.AzureClientID
-  azure_client_secret         = var.AzureClientSecret
-  azure_tenant_id             = var.AzureTenantID
 
-}
-*/
+
 
 
 ######################################################################
