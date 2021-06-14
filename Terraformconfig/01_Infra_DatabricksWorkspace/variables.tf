@@ -132,7 +132,7 @@ variable "logcategories" {
 variable "STACount" {
   type                            = string
   description                     = "The number of sta to create"
-  default                         = 3     
+  default                         = 4     
 }
 
 variable "datalakefscount" {
