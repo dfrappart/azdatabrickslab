@@ -125,9 +125,7 @@ module "datalakefilesystem" {
 
 # Assigning the app registration used by databricks to storage
 
-data "azuread_service_principal" "databricksSP" {
-  application_id = data.azurerm_key_vault_secret.KVSecretAppId.value
-}
+
 
 module "AssignDTBS_STADataContrib" {
 
