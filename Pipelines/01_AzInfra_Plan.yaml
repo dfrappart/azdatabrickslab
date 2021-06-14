@@ -96,6 +96,7 @@ stages:
          -var AzureADClientID=${AzureADClientID} \
          -var AzureClientID=${AzureClientID} \
          -var AzureClientSecret=${AzureClientSecret} \
+         -var SubsetupKey=${SubSetupKey} \
          -var SubsetupAccessKey=${access_key} \
          -var SubsetupContainerName=${container_name} \
          -var SubsetupSTOAName=${storage_account_name} \
