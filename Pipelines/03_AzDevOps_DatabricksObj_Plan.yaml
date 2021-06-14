@@ -1,6 +1,6 @@
 #Pipeline name
 
-name: '01_AzInfra_Plan'
+name: '03_AzDevOps_DatabricksObj_Plan'
 
 
 #Parameters for the pipeline
@@ -116,9 +116,9 @@ stages:
           AzureTenantID: $(TenantId)
           AzureADClientID: $(TFAADId)
           AzureADClientSecret: $(TFAADSecret)
-          key: $(TFState_AzInfra)
+          key: $(TFState_DataBricksObjects_key)
           SubSetupKey: $(TFState_SubSetup_key)
-          DatabricksInfraKey: $(TFState_DataBricksObjects_key)
+          DatabricksInfraKey: $(TFState_AzInfra)
           access_key: $(TFStateSTOAK)
           container_name: $(TFState_container_name)
           storage_account_name: $(TFState_storage_account_name)
