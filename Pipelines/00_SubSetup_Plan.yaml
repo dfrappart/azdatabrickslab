@@ -70,22 +70,6 @@ stages:
          echo 'Init and plan Terraform'
          echo '######################################################'
          echo
-      
-         echo '######################################################'    
-         echo 'Preparing backend variables'
-         export key=$key
-         export access_key=$access_key
-         export container_name=$container_name
-         export storage_account_name=$storage_account_name
-         echo
-         echo 'Preparing Plan variables'
-         export AzureClientID=$AzureClientID
-         export AzureClientSecret=$AzureClientSecret
-
-      
-      
-      
-      
          echo '######################################################'    
          echo 'Init Terraform'
          echo
@@ -105,12 +89,7 @@ stages:
          ls
          echo 'Plan Terraform'
          echo
-         terraform plan \
-         -var-file="Lab.tfvars" \
-         -var AzureSubscriptionID=${AzureSubscriptionID} \
-         -var AzureTenantID=${AzureTenantID} \
-         -var AzureClientSecret=${AzureClientSecret} \                  
-         -var AzureClientID=${AzureClientID} -input=false
+         terraform plan -var-file="Lab.tfvars" -var AzureSubscriptionID=${AzureSubscriptionID} -var AzureTenantID=${AzureTenantID} -var AzureClientSecret=${AzureClientSecret} -var AzureClientID=${AzureClientID} -input=false
      
     
         workingDirectory: 'Terraformconfig/00_SubSetup'
