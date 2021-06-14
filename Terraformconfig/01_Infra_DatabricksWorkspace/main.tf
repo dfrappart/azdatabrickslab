@@ -8,9 +8,7 @@ terraform {
   required_providers {
     azurerm = {}
     azuread = {}
-    ##databricks = {
-    #  source = "databrickslabs/databricks"
-    #}
+
 
   }
 }
