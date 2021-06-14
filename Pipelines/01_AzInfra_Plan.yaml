@@ -99,7 +99,7 @@ stages:
          -var SubsetupAccessKey=${access_key} \
          -var SubsetupContainerName=${container_name} \
          -var SubsetupSTOAName=${storage_account_name} \
-         -var SubsetupKey=${SubsetupKey} -input=false
+         -input=false
      
     
         workingDirectory: 'Terraformconfig/01_Infra_DatabricksWorkspace'
