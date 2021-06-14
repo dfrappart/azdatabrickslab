@@ -10,7 +10,7 @@ name: '00_SubSetup_Plan'
 trigger:
   branches:
     include:
-    - SBXCloudTeam
+    - main
   paths:
     include:
     - Terraformconfig/00_SubSetup/*
