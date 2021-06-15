@@ -10,7 +10,7 @@ terraform {
     azuread = {}
     databricks = {
       source = "databrickslabs/databricks"
-      configuration_aliases = [databricks.testformodule]
+      #configuration_aliases = [databricks.testformodule]
     }
 
   }
@@ -42,7 +42,7 @@ provider "databricks" {
   azure_client_id                         = var.AzureClientID
   azure_client_secret                     = var.AzureClientSecret
   azure_tenant_id                         = var.AzureTenantID
-  alias                                   = "testformodule"
+  #alias                                   = "testformodule"
 
 }
 
