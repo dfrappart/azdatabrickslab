@@ -4,7 +4,7 @@
 
 terraform {
   
-  backend "azurerm" {}
+  #backend "azurerm" {}
   required_providers {
     azurerm = {}
     azuread = {}
@@ -127,15 +127,15 @@ resource "databricks_azure_adls_gen2_mount" "testfromtf" {
 }
 
 # Module databricks
-/*
+
 module "databrickscluster" {
-providers = {
-  databricks.insidemodule = databricks.testformodule
-}
+#providers = {
+#  databricks.insidemodule = databricks.testformodule
+#}
 
   #Module Location
   source                                  = "../../Modules/DTBSCluster"
   #Module variable      
 
 }
-*/
+

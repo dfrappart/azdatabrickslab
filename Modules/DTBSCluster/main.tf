@@ -9,7 +9,7 @@ terraform {
 
     databricks = {
       source = "databrickslabs/databricks"
-      configuration_aliases = [databricks.insidemodule]
+      #configuration_aliases = [databricks.insidemodule]
     }
 
   }
