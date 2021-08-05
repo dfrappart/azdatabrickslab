@@ -318,3 +318,16 @@ output "Cert2Name" {
   value               = module.Cert_Wildcard[1].Full.name
   sensitive           = true
 }
+
+######################################################################
+# Key Vault Secret
+
+output "KVDTBSAppId" {
+  value               = module.AppRegId_to_KV.Name
+  sensitive           = false
+}
+
+output "KVDTBSAppSecretName" {
+  value               = module.AppRegSecret_to_KV.Name
+  sensitive           = false
+}

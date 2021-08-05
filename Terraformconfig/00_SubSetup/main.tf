@@ -11,9 +11,21 @@ terraform {
   backend "azurerm" {}
   required_providers {
     azurerm = {}
+    azuread = {}
+
+
   }
 }
 
+provider "azuread" {
+  
+  client_id                                = var.AzureADClientID
+  client_secret                            = var.AzureADClientSecret
+  tenant_id                                = var.AzureTenantID
+
+  #features {}
+  
+}
 
 provider "azurerm" {
   subscription_id                          = var.AzureSubscriptionID
@@ -182,6 +194,63 @@ module "Cert_Wildcard" {
   depends_on = [
     module.KeyVault,
     module.KeyVaultAccessPolicyTF
+  ]
+
+}
+
+######################################################################
+# Creating a secret for the app reg and storing it in the kv
+
+resource "azuread_application_password" "DTBSAADAppregSecret" {
+  application_object_id                 = data.azuread_application.DTBSAADAppreg.object_id
+  display_name                          = "dtbssecret"
+  end_date_relative                     = "720h"
+}
+
+module "AppRegSecret_to_KV" {
+
+  #Module Location
+  source                                  = "github.com/dfrappart/Terra-AZModuletest/Modules_building_blocks/412_KeyvaultSecret/"
+
+  #Module variable     
+  KeyVaultSecretSuffix                    = "dtbssecret"
+  PasswordValue                           = azuread_application_password.DTBSAADAppregSecret.value
+  KeyVaultId                              = module.KeyVault.Id
+  SecretContentType                       = "dtbssecret"
+  ResourceOwnerTag                        = var.ResourceOwnerTag
+  CountryTag                              = var.CountryTag
+  CostCenterTag                           = var.CostCenterTag
+  Environment                             = var.Environment
+  Project                                 = var.Project
+
+  depends_on = [
+    module.KeyVault,
+    module.KeyVaultAccessPolicyTF,
+    azuread_application_password.DTBSAADAppregSecret
+  ]
+
+}
+
+module "AppRegId_to_KV" {
+
+  #Module Location
+  source                                  = "github.com/dfrappart/Terra-AZModuletest/Modules_building_blocks/412_KeyvaultSecret/"
+
+  #Module variable     
+  KeyVaultSecretSuffix                    = "dtbsAppId"
+  PasswordValue                           = data.azuread_application.DTBSAADAppreg.application_id
+  KeyVaultId                              = module.KeyVault.Id
+  SecretContentType                       = "dtbsAppId"
+  ResourceOwnerTag                        = var.ResourceOwnerTag
+  CountryTag                              = var.CountryTag
+  CostCenterTag                           = var.CostCenterTag
+  Environment                             = var.Environment
+  Project                                 = var.Project
+
+  depends_on = [
+    module.KeyVault,
+    module.KeyVaultAccessPolicyTF,
+    azuread_application_password.DTBSAADAppregSecret
   ]
 
 }

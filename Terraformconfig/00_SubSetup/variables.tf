@@ -5,6 +5,9 @@
 ##############################################################
 #Variable declaration for provider
 
+##############################################################
+#Variable declaration for provider
+
 variable "AzureSubscriptionID" {
   type                          = string
   description                   = "The subscription id for the authentication in the provider"
@@ -25,6 +28,18 @@ variable "AzureClientSecret" {
 variable "AzureTenantID" {
   type                          = string
   description                   = "The Azure AD tenant ID"
+}
+
+variable "AzureADClientID" {
+  type                          = string
+  description                   = "The application Id, taken from Azure AD app registration for Azure AD provider"
+}
+
+
+variable "AzureADClientSecret" {
+  type                          = string
+  description                   = "The Application secretfor Azure AD provider"
+
 }
 
 
@@ -104,8 +119,8 @@ variable "CertName_Wildcard" {
   type                            = list
   description                     = "The certificate name as it appears in the keyvault"
   default                         = [
-                                      "self-signed-aks-teknews-cloud",
-                                      "self-signed-lab-tek-news-cloud"
+                                      "self-signed-dtbs-teknews-cloud",
+                                      "self-signed-datalab-tek-news-cloud"
                                     ]
 
 }
@@ -114,8 +129,8 @@ variable "CertSubject_Wildcard" {
   type                            = list
   description                     = "The certificate subject name"
   default                         = [
-                                      "CN=*.aks.teknews.cloud",
-                                      "CN=*.lab.teknews.cloud"
+                                      "CN=*.dtbs.teknews.cloud",
+                                      "CN=*.datalab.teknews.cloud"
                                     ]
 
 }
@@ -124,8 +139,8 @@ variable "DNSNames_Wildcard" {
   type                            = list
   description                     = "The DNS name associated to the certificate"
   default                         = [
-                                      "*.aks.teknews.cloud",
-                                      "*.lab.teknews.cloud"                                  
+                                      "*.dtbs.teknews.cloud",
+                                      "*.datalab.teknews.cloud"                                  
                                     ]
 
 }
@@ -212,5 +227,14 @@ variable "SubContactList" {
   type          = string
   description   = "The contactlist email address for the alerting"
 
+
+}
+
+##############################################################
+#Variable for data source
+
+variable "DTBSAADAppreg" {
+  type          = string
+  description   = "The display name of an existing application registration"
 
 }
