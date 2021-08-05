@@ -70,26 +70,26 @@ data "azurerm_key_vault" "keyvault" {
 
 data "azurerm_key_vault_certificate" "KVCert" {
   name                        = data.terraform_remote_state.Subsetupstate.outputs.Cert1Name
-  key_vault_id                = data.terraform_remote_state.Subsetupstate.outputs.KeyVault_Id
+  key_vault_id                = data.azurerm_key_vault.keyvault.id
 }
 
 # also data sourcing the cert as a secret to get the secret identifier
 
 data "azurerm_key_vault_secret" "KVSecret" {
   name                        = data.terraform_remote_state.Subsetupstate.outputs.Cert1Name
-  key_vault_id                = data.terraform_remote_state.Subsetupstate.outputs.KeyVault_Id
+  key_vault_id                = data.azurerm_key_vault.keyvault.id
 }
 
 # data source for app reg created manually at this time
 
 data "azurerm_key_vault_secret" "KVSecretAppId" {
-  name                        = "dtbsappid"
-  key_vault_id                = data.terraform_remote_state.Subsetupstate.outputs.KeyVault_Id
+  name                        = data.terraform_remote_state.Subsetupstate.outputs.KVDTBSAppId
+  key_vault_id                = data.azurerm_key_vault.keyvault.id
 }
 
 data "azurerm_key_vault_secret" "KVSecretAppSecret" {
-  name                        = "dtbssecret"
-  key_vault_id                = data.terraform_remote_state.Subsetupstate.outputs.KeyVault_Id
+  name                        = data.terraform_remote_state.Subsetupstate.outputs.KVDTBSAppSecretName
+  key_vault_id                = data.azurerm_key_vault.keyvault.id
 }
 
 data "azuread_service_principal" "databricksSP" {
