@@ -97,7 +97,15 @@ stages:
          echo
          echo 'Plan Terraform'
          echo
-         terraform plan -var-file="Lab.tfvars" -var AzureSubscriptionID=${AzureSubscriptionID} -var AzureTenantID=${AzureTenantID} -var AzureClientSecret=${AzureClientSecret} -var AzureClientID=${AzureClientID} -input=false
+         terraform plan \
+         -var-file="Lab.tfvars" \
+         -var AzureSubscriptionID=${AzureSubscriptionID} \
+         -var AzureTenantID=${AzureTenantID} \
+         -var AzureClientSecret=${AzureClientSecret} \
+         -var AzureADClientID=${AzureADClientID} \
+         -var AzureADClientSecret=${AzureADClientSecret} \
+         -var DTBSAADAppreg=${DTBSAADAppreg} \         
+         -var AzureClientID=${AzureClientID} -input=false
      
     
         workingDirectory: 'Terraformconfig/00_SubSetup'
@@ -107,6 +115,9 @@ stages:
           AzureClientSecret: $(TFSecret)
           AzureSubscriptionID: $(SubscriptionId)
           AzureTenantID: $(TenantId)
+          AzureADClientID: $(TFAADId)
+          AzureADClientSecret: $(TFAADSecret)
+          DTBSAADAppreg: $(DTBSAppRegDisplayName)
           key: $(TFState_SubSetup_key)
           access_key: $(TFStateSTOAK)
           container_name: $(TFState_container_name)
