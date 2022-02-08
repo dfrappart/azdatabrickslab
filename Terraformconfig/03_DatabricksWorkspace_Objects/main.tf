@@ -114,7 +114,7 @@ resource "databricks_cluster" "dbxcluster" {
     }
 }
 
-
+/*
 resource "databricks_azure_adls_gen2_mount" "testfromtf" {
     container_name         = "dtbslab1"
     storage_account_name   = "stdtbslab1"
@@ -125,7 +125,7 @@ resource "databricks_azure_adls_gen2_mount" "testfromtf" {
     client_secret_key      = "dtbssecret"
     initialize_file_system = false
 }
-
+*/
 # Module databricks
 
 module "databrickscluster" {
