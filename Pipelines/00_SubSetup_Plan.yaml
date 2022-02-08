@@ -87,6 +87,14 @@ stages:
          echo
          echo 'check files'
          ls
+         cat ./Lab.tfvars
+         echo
+         echo 'AzureSubscriptionID: ' ${AzureSubscriptionID} 
+         echo
+         echo 'AzureTenantID: ' ${AzureTenantID} 
+         echo
+         echo 'AzureClientID: ' ${AzureClientID} 
+         echo
          echo 'Plan Terraform'
          echo
          terraform plan -var-file="Lab.tfvars" -var AzureSubscriptionID=${AzureSubscriptionID} -var AzureTenantID=${AzureTenantID} -var AzureClientSecret=${AzureClientSecret} -var AzureClientID=${AzureClientID} -input=false
