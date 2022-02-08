@@ -1,3 +1,5 @@
 terraform.tfvars
 terraformbackendconfig.tf
 .terraform
+backend.hcl
+.terraform.lock.hcl
