@@ -198,7 +198,7 @@ stages:
          echo
          echo 'Plan Terraform'
          echo
-         terraform apply -var-file="Lab.tfvars" -var AzureSubscriptionID=${AzureSubscriptionID} -var AzureTenantID=${AzureTenantID} -var AzureClientSecret=${AzureClientSecret} -var AzureADClientID=${AzureADClientID} -var AzureADClientSecret=${AzureADClientSecret} -var DTBSAADAppreg=${DTBSAADAppreg} -var AzureClientID=${AzureClientID} -input=false
+         terraform apply -var-file="Lab.tfvars" -var AzureSubscriptionID=${AzureSubscriptionID} -var AzureTenantID=${AzureTenantID} -var AzureClientSecret=${AzureClientSecret} -var AzureADClientID=${AzureADClientID} -var AzureADClientSecret=${AzureADClientSecret} -var DTBSAADAppreg=${DTBSAADAppreg} -var AzureClientID=${AzureClientID} -auto-approve
      
     
         workingDirectory: 'Terraformconfig/00_SubSetup'
