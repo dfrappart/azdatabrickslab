@@ -102,12 +102,12 @@ data "azurerm_databricks_workspace" "DtbsWS" {
 # data source for app reg created manually at this time
 
 data "azurerm_key_vault_secret" "KVSecretAppId" {
-  name                        = "dtbsappid"
+  name                        = "kvs-dtbsappid"
   key_vault_id                = data.terraform_remote_state.Subsetupstate.outputs.KeyVault_Id
 }
 
 data "azurerm_key_vault_secret" "KVSecretAppSecret" {
-  name                        = "dtbssecret"
+  name                        = "kvs-dtbssecret"
   key_vault_id                = data.terraform_remote_state.Subsetupstate.outputs.KeyVault_Id
 }
 
