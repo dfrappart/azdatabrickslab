@@ -122,10 +122,11 @@ stages:
     jobs:
     - job: waitForValidation
       displayName: Wait for external validation
+      pool: server
       timeoutInMinutes: 10 
       steps:
       - task: ManualValidation@0
-        timeoutInMinutes: 10 
+        timeoutInMinutes: 3 
         inputs:
           notifyUsers: |
             david@teknews.cloud
@@ -197,7 +198,7 @@ stages:
          echo
          echo 'Plan Terraform'
          echo
-         terraform apply -auto-approve -var-file="Lab.tfvars" -var AzureSubscriptionID=${AzureSubscriptionID} -var AzureTenantID=${AzureTenantID} -var AzureClientSecret=${AzureClientSecret} -var AzureADClientID=${AzureADClientID} -var AzureADClientSecret=${AzureADClientSecret} -var DTBSAADAppreg=${DTBSAADAppreg} -var AzureClientID=${AzureClientID} -input=false
+         terraform apply -var-file="Lab.tfvars" -var AzureSubscriptionID=${AzureSubscriptionID} -var AzureTenantID=${AzureTenantID} -var AzureClientSecret=${AzureClientSecret} -var AzureADClientID=${AzureADClientID} -var AzureADClientSecret=${AzureADClientSecret} -var DTBSAADAppreg=${DTBSAADAppreg} -var AzureClientID=${AzureClientID} -input=false
      
     
         workingDirectory: 'Terraformconfig/00_SubSetup'
