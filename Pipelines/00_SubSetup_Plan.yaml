@@ -116,7 +116,7 @@ stages:
           storage_account_name: $(TFState_storage_account_name)
 
 
-  - stage: terraform_plan_stage
+  - stage: terraform_apply_stage
     dependsOn: terraform_plan_stage
     condition: succeeded()
     jobs:
