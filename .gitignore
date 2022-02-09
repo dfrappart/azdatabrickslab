@@ -3,3 +3,4 @@ terraformbackendconfig.tf
 .terraform
 backend.hcl
 .terraform.lock.hcl
+terraform.tfstate*
