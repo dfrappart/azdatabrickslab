@@ -7,4 +7,4 @@
 
 - Terraform module may be hosted at first in this repository but should move to the repository <a href="https://github.com/dfrappart/Terra-AZModuletest" target="_blank"> **Terra-AZModuletest** </a> 
 
-- Current version of terraform used is **0.15.x**
+- Current version of terraform used is **1.1.x**
