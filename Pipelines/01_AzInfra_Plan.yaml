@@ -158,7 +158,7 @@ stages:
          echo 'tfsec scan in directory '
          echo '######################################################'
          echo
-         tfsec . -s
+         tfsec . -s --exclude-downloaded-modules
         workingDirectory: 'Terraformconfig/01_Infra_DatabricksWorkspace'
         displayName: 'tfsec Scan'
 

@@ -155,7 +155,7 @@ stages:
          echo 'tfsec scan in directory '
          echo '######################################################'
          echo
-         tfsec . -s
+         tfsec . -s --exclude-downloaded-modules
         workingDirectory: 'Terraformconfig/00_SubSetup'
         displayName: 'tfsec Scan'
 
