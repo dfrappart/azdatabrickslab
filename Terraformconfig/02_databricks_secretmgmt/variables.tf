@@ -18,12 +18,12 @@ variable "AzureClientSecret" {
   description                   = "The Application secret"
 
 }
-
+*/
 variable "AzureTenantID" {
   type                          = string
   description                   = "The Azure AD tenant ID"
 }
-*/
+
 
 ######################################################
 # Common variables

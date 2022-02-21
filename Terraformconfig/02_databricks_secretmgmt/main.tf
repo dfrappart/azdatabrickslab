@@ -19,7 +19,7 @@ provider "azurerm" {
   subscription_id                          = var.AzureSubscriptionID
   #client_id                                = var.AzureClientID
   #client_secret                            = var.AzureClientSecret
-  #tenant_id                                = var.AzureTenantID
+  tenant_id                                = var.AzureTenantID
 
   features {}
   
@@ -30,7 +30,7 @@ provider "databricks" {
   azure_workspace_resource_id = data.azurerm_databricks_workspace.DtbsWS.id
   #azure_client_id             = var.AzureClientID
   #azure_client_secret         = var.AzureClientSecret
-  #azure_tenant_id             = var.AzureTenantID
+  azure_tenant_id             = var.AzureTenantID
 
 }
 
@@ -65,7 +65,7 @@ resource "databricks_secret_scope" "kv" {
 }
 
 resource "databricks_secret_acl" "kv_acl" {
-    principal = data.databricks_current_user.me.user_name
+    principal = databricks_user.me.user_name
     permission = "MANAGE"
     scope = databricks_secret_scope.kv.name
 }
@@ -77,3 +77,7 @@ resource "databricks_secret" "testputsecretfromdtbs" {
     scope = databricks_secret_scope.kv.id
 }
 */
+
+resource "databricks_user" "me" {
+  user_name                   = var.DatabricksUser
+}
