@@ -115,6 +115,9 @@ variable "DatabricksInfraKey" {
   description   = "State key"
 }
 
-
+variable "DatabricksUser" {
+  type          = string
+  description   = "A user principal which will be granted access to a secret scope in databricks"
+}
 
 

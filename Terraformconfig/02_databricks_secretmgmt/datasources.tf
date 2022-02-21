@@ -11,7 +11,9 @@ data "azurerm_subscription" "current" {}
 
 data "azurerm_client_config" "currentclientconfig" {}
 
-data "databricks_current_user" "me" {}
+data "databricks_current_user" "me" {
+  user_name = var.DatabricksUser
+}
 
 
 #############################################################################
