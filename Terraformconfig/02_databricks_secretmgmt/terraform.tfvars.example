@@ -5,9 +5,6 @@
 #Provider variable
 
 AzureSubscriptionID                     = ""
-AzureClientID                           = ""
-AzureClientSecret                       = ""
-AzureTenantID                           = ""
 
 SubsetupSTOAName                        = ""
 SubsetupContainerName                   = ""
