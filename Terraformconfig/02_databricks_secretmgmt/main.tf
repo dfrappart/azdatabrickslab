@@ -70,13 +70,6 @@ resource "databricks_secret_acl" "kv_acl" {
     scope = databricks_secret_scope.kv.name
 }
 
-/*
-resource "databricks_secret" "testputsecretfromdtbs" {
-    key = "testputsecretfromdtbs"
-    string_value = module.SecretString.Result
-    scope = databricks_secret_scope.kv.id
-}
-*/
 
 resource "databricks_user" "me" {
   user_name                   = var.DatabricksUser
