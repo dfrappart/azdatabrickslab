@@ -218,14 +218,15 @@ stages:
          terraform plan \
          -var AzureSubscriptionID=${AzureSubscriptionID} \
          -var AzureTenantID=${AzureTenantID} \
-         -var AzureADClientSecret=${AzureADClientSecret} \
-         -var AzureADClientID=${AzureADClientID} \
-         -var AzureClientID=${AzureClientID} \
-         -var AzureClientSecret=${AzureClientSecret} \
          -var SubsetupKey=${SubSetupKey} \
          -var SubsetupAccessKey=${access_key} \
          -var SubsetupContainerName=${container_name} \
-         -var SubsetupSTOAName=${storage_account_name}
+         -var SubsetupSTOAName=${storage_account_name} \
+         -var DatabricksInfraAccessKey=${access_key} \
+         -var DatabricksInfraContainerName=${container_name} \
+         -var DatabricksInfraKey=${DTBSInfraKey} \
+         -var DatabricksInfraSTOAName=${storage_account_name} \
+         -var DatabricksUser=${DTBSSecretscopeUser}
 #         -auto-approve
      
     
