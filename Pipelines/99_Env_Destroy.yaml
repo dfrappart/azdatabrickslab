@@ -38,7 +38,7 @@ stages:
           notifyUsers: |
             david@teknews.cloud
           instructions: 'Please validate the build configuration and resume'
-          onTimeout: 'reject'
+          onTimeout: 'resume'
     - job: terraform_destroy
       dependsOn: waitForValidation
       continueOnError: false
@@ -142,7 +142,7 @@ stages:
           notifyUsers: |
             david@teknews.cloud
           instructions: 'Please validate the build configuration and resume'
-          onTimeout: 'reject'
+          onTimeout: 'resume'
     - job: terraform_destroy
       dependsOn: waitForValidation
       continueOnError: false
@@ -226,7 +226,7 @@ stages:
      
     
         workingDirectory: 'Terraformconfig/02_databricks_secretmgmt'
-        displayName: 'Terraform init & Plan'
+        displayName: 'Terraform init & destroy'
         env:
           AzureClientID: $(TFId)
           AzureClientSecret: $(TFSecret)
@@ -257,7 +257,7 @@ stages:
           notifyUsers: |
             david@teknews.cloud
           instructions: 'Please validate the build configuration and resume'
-          onTimeout: 'reject'
+          onTimeout: 'resume'
     - job: terraform_destroy
       dependsOn: waitForValidation
       continueOnError: false
@@ -327,7 +327,7 @@ stages:
      
     
         workingDirectory: 'Terraformconfig/01_Infra_DatabricksWorkspace'
-        displayName: 'Terraform init & apply'
+        displayName: 'Terraform init & destroy'
         env:
           AzureClientID: $(TFId)
           AzureClientSecret: $(TFSecret)
@@ -357,7 +357,7 @@ stages:
           notifyUsers: |
             david@teknews.cloud
           instructions: 'Please validate the build configuration and resume'
-          onTimeout: 'reject'
+          onTimeout: 'resume'
     - job: terraform_destroy
       dependsOn: waitForValidation
       continueOnError: false
