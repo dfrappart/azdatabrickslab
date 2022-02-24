@@ -106,7 +106,7 @@ stages:
          -var DatabricksInfraKey=${DatabricksInfraKey} \
          -var DatabricksInfraAccessKey=${access_key} \
          -var DatabricksInfraContainerName=${container_name} \
-         -var DatabricksInfraSTOAName=${storage_account_name}
+         -var DatabricksInfraSTOAName=${storage_account_name} \
          -auto-approve
      
     
