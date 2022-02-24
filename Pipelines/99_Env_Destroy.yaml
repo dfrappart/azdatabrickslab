@@ -39,7 +39,7 @@ stages:
             david@teknews.cloud
           instructions: 'Please validate the build configuration and resume'
           onTimeout: 'reject'
-    - job: terraform_apply
+    - job: terraform_destroy
       dependsOn: waitForValidation
       continueOnError: false
       # Job step
@@ -111,7 +111,7 @@ stages:
          -var DatabricksInfraKey=${DatabricksInfraKey} \
          -var DatabricksInfraAccessKey=${access_key} \
          -var DatabricksInfraContainerName=${container_name} \
-         -var DatabricksInfraSTOAName=${storage_account_name} \
+         -var DatabricksInfraSTOAName=${storage_account_name}
 #         -auto-approve
      
     
@@ -148,7 +148,7 @@ stages:
             david@teknews.cloud
           instructions: 'Please validate the build configuration and resume'
           onTimeout: 'reject'
-    - job: destroy
+    - job: terraform_destroy
       dependsOn: waitForValidation
       continueOnError: false
       # Job step
@@ -214,7 +214,7 @@ stages:
          -var SubsetupKey=${SubSetupKey} \
          -var SubsetupAccessKey=${access_key} \
          -var SubsetupContainerName=${container_name} \
-         -var SubsetupSTOAName=${storage_account_name} \
+         -var SubsetupSTOAName=${storage_account_name}
 #         -auto-approve
      
     
@@ -250,7 +250,7 @@ stages:
             david@teknews.cloud
           instructions: 'Please validate the build configuration and resume'
           onTimeout: 'reject'
-    - job: terraform_apply
+    - job: terraform_destroy
       dependsOn: waitForValidation
       continueOnError: false
       # Job step
@@ -304,18 +304,6 @@ stages:
          echo 'check terraform'
          terraform version
          echo
-         echo 'check files'
-         ls
-         cat ./Lab.tfvars
-         echo
-         echo 'AzureSubscriptionID: ' ${AzureSubscriptionID} 
-         echo
-         echo 'AzureTenantID: ' ${AzureTenantID} 
-         echo
-         echo 'AzureClientID: ' ${AzureClientID} 
-         echo
-         echo 'Apply Terraform'
-         echo
          terraform plan \
          -var AzureSubscriptionID=${AzureSubscriptionID} \
          -var AzureTenantID=${AzureTenantID} \
@@ -326,7 +314,7 @@ stages:
          -var SubsetupKey=${SubSetupKey} \
          -var SubsetupAccessKey=${access_key} \
          -var SubsetupContainerName=${container_name} \
-         -var SubsetupSTOAName=${storage_account_name} \
+         -var SubsetupSTOAName=${storage_account_name}
 #         -auto-approve
      
     
@@ -362,7 +350,7 @@ stages:
             david@teknews.cloud
           instructions: 'Please validate the build configuration and resume'
           onTimeout: 'reject'
-    - job: terraform_apply
+    - job: terraform_destroy
       dependsOn: waitForValidation
       continueOnError: false
       # Job step
