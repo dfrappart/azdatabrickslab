@@ -92,7 +92,7 @@ stages:
          echo
          echo 'Destroy Terraform'
          echo
-         terraform plan \
+         terraform destroy \
          -var AzureSubscriptionID=${AzureSubscriptionID} \
          -var AzureTenantID=${AzureTenantID} \
          -var AzureADClientSecret=${AzureADClientSecret} \
@@ -107,7 +107,7 @@ stages:
          -var DatabricksInfraAccessKey=${access_key} \
          -var DatabricksInfraContainerName=${container_name} \
          -var DatabricksInfraSTOAName=${storage_account_name}
-#         -auto-approve
+         -auto-approve
      
     
         workingDirectory: 'Terraformconfig/03_DatabricksWorkspace_Objects'
@@ -208,9 +208,9 @@ stages:
          echo 'check terraform'
          terraform version
          echo
-         echo 'Plan Terraform'
+         echo 'Destroy Terraform'
          echo
-         terraform plan \
+         terraform destroy \
          -var AzureSubscriptionID=${AzureSubscriptionID} \
          -var AzureTenantID=${AzureTenantID} \
          -var SubsetupKey=${SubSetupKey} \
@@ -222,7 +222,7 @@ stages:
          -var DatabricksInfraKey=${DTBSInfraKey} \
          -var DatabricksInfraSTOAName=${storage_account_name} \
          -var DatabricksUser=${DTBSSecretscopeUser} \
-         -input=false
+         -auto-approve
      
     
         workingDirectory: 'Terraformconfig/02_databricks_secretmgmt'
@@ -312,7 +312,7 @@ stages:
          echo 'check terraform'
          terraform version
          echo
-         terraform plan \
+         terraform destroy \
          -var AzureSubscriptionID=${AzureSubscriptionID} \
          -var AzureTenantID=${AzureTenantID} \
          -var AzureADClientSecret=${AzureADClientSecret} \
@@ -322,8 +322,8 @@ stages:
          -var SubsetupKey=${SubSetupKey} \
          -var SubsetupAccessKey=${access_key} \
          -var SubsetupContainerName=${container_name} \
-         -var SubsetupSTOAName=${storage_account_name}
-#         -auto-approve
+         -var SubsetupSTOAName=${storage_account_name} \
+         -auto-approve
      
     
         workingDirectory: 'Terraformconfig/01_Infra_DatabricksWorkspace'
@@ -414,8 +414,7 @@ stages:
          echo
          echo 'Destroy Terraform'
          echo
-         terraform plan -var-file="Lab.tfvars" -var AzureSubscriptionID=${AzureSubscriptionID} -var AzureTenantID=${AzureTenantID} -var AzureClientSecret=${AzureClientSecret} -var AzureADClientID=${AzureADClientID} -var AzureADClientSecret=${AzureADClientSecret} -var DTBSAADAppreg=${DTBSAADAppreg} -var AzureClientID=${AzureClientID}
-     
+         terraform destroy -var-file="Lab.tfvars" -var AzureSubscriptionID=${AzureSubscriptionID} -var AzureTenantID=${AzureTenantID} -var AzureClientSecret=${AzureClientSecret} -var AzureADClientID=${AzureADClientID} -var AzureADClientSecret=${AzureADClientSecret} -var DTBSAADAppreg=${DTBSAADAppreg} -var AzureClientID=${AzureClientID} -auto-approve
     
         workingDirectory: 'Terraformconfig/00_SubSetup'
         displayName: 'Terraform init & destroy'
