@@ -181,6 +181,17 @@ stages:
         env:
           TFVer: $(TFVer)
 
+      - script: |
+         echo Login to Azure
+         az login -u ${pipelineuser} -p ${pipelineuserpwd}
+         echo
+         echo Listing subscriptions
+         az account list -o table
+         
+        displayName: 'Login to Azure'
+        env:
+          pipelineuser: $(azlogin)
+          pipelineuserpwd: $(azdevopsrunaspwd)
       
       - script: |
          echo '######################################################'   
