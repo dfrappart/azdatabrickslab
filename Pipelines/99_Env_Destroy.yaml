@@ -26,8 +26,6 @@ variables:
 stages:
 
   - stage: terraform_destroy_databricks_objects_stage
-    dependsOn: terraform_plan_stage
-    condition: succeeded()
     jobs:
     - job: waitForValidation
       displayName: Wait for external validation
