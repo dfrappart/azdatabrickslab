@@ -54,18 +54,15 @@ stages:
          export TFuriend="_linux_amd64.zip"
          export TFuri=$TFuriTemp$TFuriend
          echo "TFDL URI is $TFuri"
-         wget $TFuri
-         
+         wget $TFuri         
          echo "building TFZip name"
          export TFZip1="terraform_"
          export TFZipEnd="_linux_amd64.zip"
          export TFZipTemp=$TFZip1$TFVer
          export ZIPName=$TFZipTemp$TFZipEnd
          echo "Zip name is $ZIPName"
-         unzip -a $ZIPName
-         
+         unzip -a $ZIPName         
          sudo mv ./terraform /usr/local/bin/terraform
-         
          terraform version
          
         displayName: 'Download and update Terraform'
@@ -93,8 +90,6 @@ stages:
          echo 'check terraform'
          terraform version
          echo
-         echo 'check files'
-         ls
          echo 'Destroy Terraform'
          echo
          terraform plan \
@@ -195,7 +190,7 @@ stages:
       
       - script: |
          echo '######################################################'   
-         echo 'Init and destroy Terraform'
+         echo 'Init and plan Terraform'
          echo '######################################################'
          echo
          echo '######################################################'    
@@ -213,7 +208,7 @@ stages:
          echo 'check terraform'
          terraform version
          echo
-         echo 'Destroy Terraform'
+         echo 'Plan Terraform'
          echo
          terraform plan \
          -var AzureSubscriptionID=${AzureSubscriptionID} \
@@ -226,12 +221,12 @@ stages:
          -var DatabricksInfraContainerName=${container_name} \
          -var DatabricksInfraKey=${DTBSInfraKey} \
          -var DatabricksInfraSTOAName=${storage_account_name} \
-         -var DatabricksUser=${DTBSSecretscopeUser}
-#         -auto-approve
+         -var DatabricksUser=${DTBSSecretscopeUser} \
+         -input=false
      
     
         workingDirectory: 'Terraformconfig/02_databricks_secretmgmt'
-        displayName: 'Terraform init & destroy'
+        displayName: 'Terraform init & Plan'
         env:
           AzureClientID: $(TFId)
           AzureClientSecret: $(TFSecret)
@@ -241,10 +236,11 @@ stages:
           AzureADClientSecret: $(TFAADSecret)
           key: $(TFState_DataBricksSecret_key)
           SubSetupKey: $(TFState_SubSetup_key)
+          DTBSInfraKey: $(TFState_AzInfra)
           access_key: $(TFStateSTOAK)
           container_name: $(TFState_container_name)
           storage_account_name: $(TFState_storage_account_name)
-
+          DTBSSecretscopeUser: $(databricksusersecretscope)
 
   - stage: terraform_destroy_databricks_infra_stage
     dependsOn: terraform_destroy_databricks_secrets_stage
