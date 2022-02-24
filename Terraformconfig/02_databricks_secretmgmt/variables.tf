@@ -6,6 +6,7 @@ variable "AzureSubscriptionID" {
   description                   = "The subscription id for the authentication in the provider"
 }
 
+/*
 variable "AzureClientID" {
   type                          = string
   description                   = "The application Id, taken from Azure AD app registration"
@@ -17,11 +18,12 @@ variable "AzureClientSecret" {
   description                   = "The Application secret"
 
 }
-
+*/
 variable "AzureTenantID" {
   type                          = string
   description                   = "The Azure AD tenant ID"
 }
+
 
 ######################################################
 # Common variables
@@ -113,6 +115,9 @@ variable "DatabricksInfraKey" {
   description   = "State key"
 }
 
-
+variable "DatabricksUser" {
+  type          = string
+  description   = "A user principal which will be granted access to a secret scope in databricks"
+}
 
 

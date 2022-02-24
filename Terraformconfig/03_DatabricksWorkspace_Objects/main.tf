@@ -114,18 +114,7 @@ resource "databricks_cluster" "dbxcluster" {
     }
 }
 
-/*
-resource "databricks_azure_adls_gen2_mount" "testfromtf" {
-    container_name         = "dtbslab1"
-    storage_account_name   = "stdtbslab1"
-    mount_name             = "mountfromtf"
-    tenant_id              = data.azurerm_client_config.currentclientconfig.tenant_id
-    client_id              = data.azuread_service_principal.databricksSP.application_id
-    client_secret_scope    = "keyvault-managed"
-    client_secret_key      = "dtbssecret"
-    initialize_file_system = false
-}
-*/
+
 # Module databricks
 
 module "databrickscluster" {

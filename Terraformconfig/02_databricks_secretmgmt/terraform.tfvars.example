@@ -5,9 +5,6 @@
 #Provider variable
 
 AzureSubscriptionID                     = ""
-AzureClientID                           = ""
-AzureClientSecret                       = ""
-AzureTenantID                           = ""
 
 SubsetupSTOAName                        = ""
 SubsetupContainerName                   = ""
@@ -18,3 +15,5 @@ DatabricksInfraSTOAName                 = ""
 DatabricksInfraContainerName            = ""
 DatabricksInfraKey                      = ""
 DatabricksInfraAccessKey                = ""
+
+DatabricksUser                          = ""
