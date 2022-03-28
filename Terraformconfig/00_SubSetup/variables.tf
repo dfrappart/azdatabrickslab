@@ -89,7 +89,7 @@ variable "Secretperms_TFApp_AccessPolicy" {
 variable "Certperms_TFApp_AccessPolicy" {
   type                            = list
   description                     = "The authorization on the secret for the Access policy"
-  default                         = ["Backup","deleteissuers","Get","Getissuers","listissuers","managecontacts","manageissuers","Purge","Recover","Restore","Setissuers","List","Update", "Create", "Import", "Delete"]
+  default                         = ["Backup","deleteissuers","Get","Getissuers","ListIssuers","ManagedContacts","ManageIssuers","Purge","Recover","Restore","SetIssuers","List","Update", "Create", "Import", "Delete"]
 
 }
 
@@ -103,7 +103,7 @@ variable "Secretperms_DTBSAdmins_AccessPolicy" {
 variable "Certperms_DTBSAdmins_AccessPolicy" {
   type                            = list
   description                     = "The authorization on the secret for the Access policy to grant to Databricks Admins"
-  default                         = ["Backup","deleteissuers","Get","Getissuers","listissuers","managecontacts","manageissuers","Purge","Recover","Restore","Setissuers","List","Update", "Create", "Import", "Delete"]
+  default                         = ["Backup","deleteissuers","Get","Getissuers","ListIssuers","ManagedContacts","ManageIssuers","Purge","Recover","Restore","SetIssuers","List","Update", "Create", "Import", "Delete"]
 
 }
 
